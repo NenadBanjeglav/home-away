@@ -6,14 +6,18 @@ import { Button } from "@/components/ui/button";
 
 import React from "react";
 
+type btnSize = "default" | "lg" | "sm";
+
 interface SubmitButtonProps {
   className?: string;
   text?: string;
+  size?: btnSize;
 }
 
 const SubmitButton = ({
   className = "",
   text = "submit",
+  size = "lg",
 }: SubmitButtonProps) => {
   const { pending } = useFormStatus();
   return (
@@ -21,7 +25,7 @@ const SubmitButton = ({
       type="submit"
       disabled={pending}
       className={`capitalize ${className}`}
-      size="lg"
+      size={size}
     >
       {pending ? (
         <>
