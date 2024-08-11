@@ -1,9 +1,25 @@
 import React from "react";
+import CategoriesList from "@/components/home/CategoriesList";
+import PropertiesContainer from "@/components/home/PropertiesContainer";
 
-const HomePage = () => {
+const HomePage = ({
+  searchParams,
+}: {
+  searchParams: { category?: string; serach?: string };
+}) => {
+  console.log(searchParams);
   return (
     <div>
-      <h1 className="text-3xl">HomePage</h1>
+      <section>
+        <CategoriesList
+          category={searchParams.category}
+          search={searchParams.serach}
+        />
+        <PropertiesContainer
+          category={searchParams.category}
+          search={searchParams.serach}
+        />
+      </section>
     </div>
   );
 };
