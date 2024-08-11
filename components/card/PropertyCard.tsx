@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import CountryFlagAndName from "./CountryFlagAndName";
-import PropertyRating from "./PropertyRating";
-import FavoriteToggleButton from "./FavoriteToggleButton";
+
 import { PropertyCardProps } from "@/utils/types";
 import { formatCurrency } from "@/utils/format";
+import PropertyRating from "./PropertyRating";
+import FavouriteToggleButton from "./FavouriteToggleButton";
+import CountryName from "./CountryName";
 
 const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
   const { name, image, price } = property;
@@ -27,6 +28,7 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
           <h3 className="mt-1 text-sm font-semibold">
             {name.substring(0, 30)}
           </h3>
+          <PropertyRating inPage={false} propertyId={propertyId} />
         </div>
         <p className="mt-1 text-sm text-muted-foreground">
           {tagline.substring(0, 40)}
@@ -36,9 +38,12 @@ const PropertyCard = ({ property }: { property: PropertyCardProps }) => {
             <span className="font-semibold ">{formatCurrency(price)} </span>
             night
           </p>
+          <CountryName countryCode={country} />
         </div>
       </Link>
-      <div className="absolute top-5 z-10"></div>
+      <div className="absolute right-5 top-5 z-10">
+        <FavouriteToggleButton propertyId={propertyId} />
+      </div>
     </article>
   );
 };
