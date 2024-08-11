@@ -7,7 +7,6 @@ const HomePage = ({
 }: {
   searchParams: { category?: string; serach?: string };
 }) => {
-  console.log(searchParams);
   return (
     <div>
       <section>
