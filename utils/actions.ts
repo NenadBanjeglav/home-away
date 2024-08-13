@@ -8,8 +8,8 @@ import {
 } from "./schemas";
 import db from "./db";
 import { clerkClient, currentUser } from "@clerk/nextjs/server";
-import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
 
 const getAuthUser = async () => {
