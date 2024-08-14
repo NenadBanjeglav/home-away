@@ -19,7 +19,7 @@ const PropertyRating = ({
 
   return (
     <span className={className}>
-      <FaStar className="size-3" />
+      <FaStar className={`size-3 ${inPage ? "mt-1" : "mt-px"}`} />
       {rating} {countValue}
     </span>
   );
