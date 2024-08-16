@@ -1,9 +1,9 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import Rating from "./Rating";
 import Comment from "./Comment";
-import Image from "next/image";
 
 interface ReviewCardProps {
   reviewInfo: {
@@ -17,15 +17,13 @@ interface ReviewCardProps {
 
 const ReviewCard = ({ reviewInfo, children }: ReviewCardProps) => {
   return (
-    <Card>
+    <Card className="relative">
       <CardHeader>
         <div className="flex items-center">
-          <Image
+          <img
             src={reviewInfo.image}
             alt="profile"
-            width={48}
-            height={48}
-            className="rounded-full object-cover"
+            className=" size-12 rounded-full object-cover"
           />
           <div className="ml-4">
             <h3 className="mb-1 text-sm font-bold capitalize">
