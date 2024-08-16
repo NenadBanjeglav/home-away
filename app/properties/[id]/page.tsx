@@ -2,7 +2,6 @@ import FavoriteToggleButton from "@/components/card/FavoriteToggleButton";
 import PropertyRating from "@/components/card/PropertyRating";
 
 import Amenities from "@/components/properties/Amenities";
-import BookingCalendar from "@/components/properties/BookingCalendar";
 import BreadCrumbs from "@/components/properties/BreadCrumbs";
 import Description from "@/components/properties/Description";
 import ImageContainer from "@/components/properties/ImageContainer";
@@ -65,9 +64,7 @@ const PropertyDetailsPage = async ({ params }: { params: { id: string } }) => {
           <Amenities amenities={property.amenities} />
           <DynamicMap countryCode={property.country} />
         </div>
-        <div className="flex flex-col items-center lg:col-span-4">
-          <BookingCalendar />
-        </div>
+        <div className="flex flex-col items-center lg:col-span-4"></div>
       </section>
       {reviewDoesNotExist && <SubmitReview propertyId={property.id} />}
       <PropertyReviews propertyId={property.id} />

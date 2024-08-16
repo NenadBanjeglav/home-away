@@ -12,6 +12,7 @@ import { clerkClient, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { uploadImage } from "./supabase";
+import { Select } from "@radix-ui/react-select";
 
 const getAuthUser = async () => {
   const user = await currentUser();
@@ -284,6 +285,12 @@ export const fetchPropertyDetails = async (id: string) => {
     },
     include: {
       profile: true,
+      bookings: {
+        select: {
+          checkIn: true,
+          checkOut: true,
+        },
+      },
     },
   });
 };
