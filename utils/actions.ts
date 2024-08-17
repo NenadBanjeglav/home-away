@@ -442,6 +442,7 @@ export const createBookingAction = async (prevState: {
   });
 
   try {
+    // eslint-disable-next-line no-unused-vars
     const booking = await db.booking.create({
       data: {
         checkIn,
