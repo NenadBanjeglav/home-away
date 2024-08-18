@@ -482,4 +482,19 @@ export const fetchBookings = async () => {
   return bookings;
 };
 
-export const deleteBookingAction = async () => {};
+export const deleteBookingAction = async (prevState: { bookingId: string }) => {
+  const { bookingId } = prevState;
+  const user = await getAuthUser();
+  try {
+    await db.booking.delete({
+      where: {
+        id: bookingId,
+        profileId: user.id,
+      },
+    });
+    revalidatePath("/bookings");
+    return { message: "Booking deleted successfuly" };
+  } catch (error) {
+    return renderError(error);
+  }
+};
