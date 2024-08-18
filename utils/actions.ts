@@ -458,3 +458,28 @@ export const createBookingAction = async (prevState: {
   }
   redirect("/bookings");
 };
+
+export const fetchBookings = async () => {
+  const user = await getAuthUser();
+
+  const bookings = await db.booking.findMany({
+    where: {
+      profileId: user.id,
+    },
+    include: {
+      property: {
+        select: {
+          id: true,
+          name: true,
+          country: true,
+        },
+      },
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return bookings;
+};
+
+export const deleteBookingAction = async () => {};
