@@ -16,9 +16,13 @@ import TextAreaInput from "@/components/form/TextAreaInput";
 import CounterInput from "@/components/form/CounterInput";
 import SubmitButton from "@/components/form/Buttons";
 
+import AmenitiesInput from "@/components/form/AmenitiesInput";
+import { type Amenity } from "@/utils/amenities";
+
 const EditRentalPage = async ({ params }: { params: { id: string } }) => {
   const property = await fetchRentalDetails(params.id);
   if (!property) redirect("/");
+  const defaultAmenities: Amenity[] = JSON.parse(property.amenities);
 
   return (
     <section>
@@ -63,6 +67,8 @@ const EditRentalPage = async ({ params }: { params: { id: string } }) => {
           <CounterInput detail="bedrooms" defaultValue={property.bedrooms} />
           <CounterInput detail="beds" defaultValue={property.beds} />
           <CounterInput detail="baths" defaultValue={property.baths} />
+          <h3 className="mb-6 mt-10 text-lg font-medium">Amenities</h3>
+          <AmenitiesInput defaultValue={defaultAmenities} />
           <SubmitButton text="edit property" className="mt-12" />
         </FormContainer>
       </div>

@@ -4,6 +4,13 @@ import { Amenity, conservativeAmenities } from "@/utils/amenities";
 import { Checkbox } from "@/components/ui/checkbox";
 
 const AmenitiesInput = ({ defaultValue }: { defaultValue?: Amenity[] }) => {
+  // const amenitiesWithIcons = defaultValue?.map(({ name, selected }) => {
+  //   return {
+  //     name,
+  //     selected,
+  //     icon: amenities.find((amenity) => amenity.name === name)!.icon,
+  //   };
+  // });
   const [selectedAmenities, setSelectedAmenities] = useState<Amenity[]>(
     defaultValue || conservativeAmenities
   );
@@ -39,7 +46,8 @@ const AmenitiesInput = ({ defaultValue }: { defaultValue?: Amenity[] }) => {
                 htmlFor={amenity.name}
                 className="flex items-center gap-x-2 text-sm font-medium capitalize leading-none"
               >
-                {amenity.name} <amenity.icon className="size-4" />
+                {amenity.name}
+                {/* <amenity.icon className="size-4" /> */}
               </label>
             </div>
           );
