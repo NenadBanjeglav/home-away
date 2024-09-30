@@ -1,7 +1,39 @@
-import React from "react";
+"use client";
+import React, { useCallback } from "react";
+import axios from "axios";
+import { useSearchParams } from "next/navigation";
+
+import { loadStripe } from "@stripe/stripe-js";
+import {
+  EmbeddedCheckout,
+  EmbeddedCheckoutProvider,
+} from "@stripe/react-stripe-js";
+
+const stripePromise = loadStripe(
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY as string
+);
 
 const CheckoutPage = () => {
-  return <h1 className="text-3xl">CheckoutPage</h1>;
+  const searchParams = useSearchParams();
+  const bookingId = searchParams.get("bookingId");
+
+  const fetchClientSecret = useCallback(async () => {
+    const response = await axios.post("/api/payment", {
+      bookingId,
+    });
+    return response.data.clientSecret;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const options = { fetchClientSecret };
+
+  return (
+    <div id="checkout">
+      <EmbeddedCheckoutProvider stripe={stripePromise} options={options}>
+        <EmbeddedCheckout />
+      </EmbeddedCheckoutProvider>
+    </div>
+  );
 };
 
 export default CheckoutPage;
