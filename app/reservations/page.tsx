@@ -25,7 +25,7 @@ const ReservationsPage = async () => {
       <Stats />
       <div className="mt-16">
         <h4 className="mb-4 capitalize">
-          total reservations: {reservations.length}
+          Total reservations: {reservations.length}
         </h4>
 
         <Table>
